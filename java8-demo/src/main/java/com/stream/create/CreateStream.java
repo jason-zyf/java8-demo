@@ -38,6 +38,7 @@ public class CreateStream {
         Stream.generate(Math::random)
                 .limit(10)
                 .forEach(System.out::println);
+
     }
 
 }
