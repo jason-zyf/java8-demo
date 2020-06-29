@@ -1,7 +1,6 @@
 package com.stream.test;
 
 import com.stream.bean.Dish;
-import javafx.scene.Group;
 import org.junit.Test;
 
 import java.util.*;
@@ -150,15 +149,13 @@ public class DishTest {
     }
 
     /**
-     * 找出第一个满足要求的值
+     * 统计个数
+     * 总共有多少道菜
      */
     @Test
     public void test10(){
-        List<Integer> nums = Arrays.asList(1,3,5,4,2);
-        Optional<Integer> firstNum = nums.stream()
-                .filter(i -> i % 2 == 0)
-                .findFirst();
-        System.out.println(firstNum.get());
+        long count = menu.stream().count();
+        System.out.println(count);
     }
 
 

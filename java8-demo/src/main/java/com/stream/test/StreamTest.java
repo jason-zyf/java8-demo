@@ -2,11 +2,10 @@ package com.stream.test;
 
 import org.junit.Test;
 
-import javax.sound.midi.Soundbank;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * @author zyting
@@ -94,6 +93,71 @@ public class StreamTest {
         System.out.println(collect);
     }
 
+    /**
+     * 找出第一个满足要求的值
+     */
+    @Test
+    public void test7(){
+        List<Integer> nums = Arrays.asList(1,3,5,4,2);
+        Optional<Integer> firstNum = nums.stream()
+                .filter(i -> i % 2 == 0)
+                .findFirst();
+        System.out.println(firstNum.get());
+    }
 
+    /**
+     * 循环求和
+     * reduce接受两个参数：
+     * 一个初始值0
+     * 一个BinaryOperator<T>来将两个元素结合起来产生一个新值，这里用的是lambda (a,b)->a+b
+     */
+    @Test
+    public void test8(){
+        List<Integer> nums = Arrays.asList(1,2,3,4,5);
+        int sum = nums.stream()
+                .reduce(0, (a, b) -> a + b);
+        int product = nums.stream().reduce(1, (a,b) -> a*b);
+        System.out.println("sum: "+sum);
+        System.out.println("product: "+product);
+
+        //使用Integer类中的静态方法sum来对两个数求和
+        int sum2 = nums.stream().reduce(0, Integer::sum);
+        System.out.println("sum2: "+sum2);
+    }
+
+    /**
+     * 扩展：使用Integer类中的一个静态sum 方法来对两个数求和
+     * 无初始化值： 不接受初始值，但是会返回一个Optional对象（考虑流中没有任何元素的情况）
+     * 如果集合中没有元素会返回
+     */
+    @Test
+    public void test9(){
+        List<Integer> nums = Arrays.asList(1,2,3,4,5);
+        //使用Integer类中的静态方法sum来对两个数求和
+        int sum1 = nums.stream().reduce(0, Integer::sum);
+        System.out.println("sum1: "+sum1);
+
+        Optional<Integer> sum = nums.stream().reduce((a, b) -> a + b);
+        System.out.println("sum: "+sum);
+    }
+
+    /**
+     * 求最值
+     */
+    @Test
+    public void test10(){
+        List<Integer> nums = Arrays.asList(1,2,3,4,5);
+        Optional<Integer> max = nums.stream().reduce(Integer::max);
+
+        Optional<Integer> min = nums.stream().reduce((a, b) -> a < b ? a : b);
+        System.out.println("max: "+max);
+        System.out.println("min: "+min);
+    }
+
+    @Test
+    public void test11(){
+
+
+    }
 
 }
