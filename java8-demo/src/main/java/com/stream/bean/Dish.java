@@ -65,4 +65,16 @@ public class Dish {
 
     public enum Type {MEAT, FISH, OTHER}
 
+    /**
+     * 自定义一个菜肴热量等级函数
+     */
+    public CaloricLevel getCaloriecLevel(){
+        if(this.getCalories() <= 400)
+            return  CaloricLevel.DIET;
+        else if(this.getCalories() <= 700)
+            return CaloricLevel.NORMAL;
+        else
+            return CaloricLevel.FAT;
+    }
+
 }

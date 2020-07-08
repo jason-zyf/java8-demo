@@ -6,6 +6,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 /**
  * @author zyting
@@ -154,10 +156,50 @@ public class StreamTest {
         System.out.println("min: "+min);
     }
 
+    /**
+     * [1,100] 内的偶数个数
+     * range和rangeClosed。这两个方法都是第一个参数接受起始值，第二个参数接受结束值。
+     * 但range是不包含结束值的，而rangeClosed则包含结束值。
+     */
     @Test
     public void test11(){
+        IntStream intStream = IntStream.rangeClosed(1, 100)
+                .filter(n -> n % 2 == 0);
+        System.out.println(intStream.count());
+    }
+
+    /**
+     * 打印出[1,100]内所有的偶数
+     */
+    @Test
+    public void test12(){
+        IntStream.rangeClosed(1, 100)
+                .filter(n -> n % 2 == 0)
+                .forEach(System.out::println);
+    }
+
+    /**
+     * 生成a,b在[1,100]内的勾股数
+     */
+    @Test
+    public void test13(){
+        Stream<int[]> stream = IntStream.rangeClosed(1, 100)
+                .boxed()
+                .flatMap(a ->
+                        IntStream.rangeClosed(a, 100)
+                                .filter(b -> Math.sqrt(a * a + b * b) % 1 == 0)
+                                .mapToObj(b ->
+                                        new int[]{a, b, (int) Math.sqrt(a * a + b * b)})
+                );
+        stream.forEach(t ->
+                System.out.println(t[0]+", "+t[1]+", "+t[2]));
+    }
+
+    @Test
+    public void test14(){
 
 
     }
+
 
 }

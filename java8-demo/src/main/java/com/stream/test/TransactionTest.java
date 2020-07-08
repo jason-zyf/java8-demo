@@ -211,19 +211,6 @@ public class TransactionTest {
     }
 
     /**
-     * 找出最大的交易额
-     * 映射出交易额
-     * 排序
-     */
-    @Test
-    public void test15(){
-        Optional<Integer> maxValue = transactions.stream()
-                .map(Transaction::getValue)
-                .reduce((t1, t2) -> t1 > t2 ? t1 : t2);
-        System.out.println(maxValue.get());
-    }
-
-    /**
      * 找到交易额最小的交易
      */
     @Test
@@ -242,6 +229,19 @@ public class TransactionTest {
         Optional<Transaction> min = transactions.stream()
                 .min(Comparator.comparing(Transaction::getValue));
         System.out.println(min);
+    }
+
+    /**
+     * 找出最大的交易额
+     * 映射出交易额
+     * 排序
+     */
+    @Test
+    public void test15(){
+        Optional<Integer> maxValue = transactions.stream()
+                .map(Transaction::getValue)
+                .reduce((t1, t2) -> t1 > t2 ? t1 : t2);
+        System.out.println(maxValue.get());
     }
 
 }
