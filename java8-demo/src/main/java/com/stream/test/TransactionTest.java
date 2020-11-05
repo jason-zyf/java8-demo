@@ -4,11 +4,8 @@ import com.stream.bean.Trader;
 import com.stream.bean.Transaction;
 import org.junit.Test;
 
-import javax.sound.midi.Soundbank;
 import java.util.*;
-import java.util.function.ToLongBiFunction;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * @author zyting

@@ -4,7 +4,6 @@ import com.stream.bean.CaloricLevel;
 import com.stream.bean.Dish;
 import org.junit.Test;
 
-import javax.xml.transform.Source;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
